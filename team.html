@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponge Crew - Team</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000010;
+      font-family: 'Fredoka One', cursive;
+      color: #0af;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 16px 24px;
+    }
+
+    #left-top {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-title {
+      font-size: 1.8rem;
+    }
+
+    .team-label {
+      font-size: 1.3rem;
+      color: #3399ff;
+      align-self: flex-end;
+    }
+
+    #top-middle {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.7rem;
+      color: #66bbff;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 700;
+      text-shadow: 0 0 8px #33aaff;
+      transition: color 0.3s ease;
+    }
+
+    #top-middle:hover {
+      color: #99ddff;
+      text-shadow: 0 0 15px #66ccff;
+    }
+
+    .pyramid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 100px;
+      gap: 40px;
+    }
+
+    .tier {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .member {
+      background: transparent;
+      border: 2px solid #00aaff;
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      width: 160px;
+      box-shadow: 0 0 10px #00aaff44;
+    }
+
+    .member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .member-name {
+      font-size: 1.1rem;
+      color: #00ccff;
+    }
+
+    .member-role {
+      font-size: 0.9rem;
+      color: #99ccff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div id="left-top">
+    <div class="site-title">Sponge Crew</div>
+    <div class="team-label">//Team</div>
+  </div>
+  <div id="top-middle" onclick="location.href='index.html'">Home</div>
+</header>
+
+<main class="pyramid">
+  <div class="tier">
+    <div class="member">
+      <img src="https://cdn.discordapp.com/avatars/1287728898745827358/85eaa2dc28565156a4575cfdb99349fa?size=1024" alt="JoeyD">
+      <div class="member-name">JoeyD</div>
+      <div class="member-role">Owner</div>
+    </div>
+  </div>
+  <div class="tier">
+    <div class="member">
+      <img src="https://cdn.discordapp.com/avatars/1267133446590038016/d20d157fd97254c18b387acc3178fc5f?size=1024" alt="Judge">
+      <div class="member-name">Judge</div>
+      <div class="member-role">Manager</div>
+    </div>
+    <div class="member">
+      <img src="https://cdn.discordapp.com/avatars/1106664115113574441/a_0bfad268c081fd2e510e277c9f03e21c?size=1024" alt="Cappybara">
+      <div class="member-name">Cappybara</div>
+      <div class="member-role">Manager</div>
+    </div>
+  </div>
+  <div class="tier">
+    <div class="member">
+      <img src="https://cdn.discordapp.com/avatars/1028968849317564477/3de740dd5fd3d525e275b7d80563e205?size=1024" alt="eclipse">
+      <div class="member-name">eclipse</div>
+      <div class="member-role">Management</div>
+    </div>
+    <div class="member">
+      <img src="https://cdn.discordapp.com/avatars/1108936765777137784/1717d905596357f6390b9a674f5f04cc?size=1024" alt="Blitz">
+      <div class="member-name">Blitz</div>
+      <div class="member-role">Developer</div>
+    </div>
+    <div class="member">
+      <img src="https://cdn.discordapp.com/avatars/1033657797826596884/7b24b9244f75a2db906191db65c5ee52?size=1024" alt="Aw">
+      <div class="member-name">Aw</div>
+      <div class="member-role">Developer</div>
+    </div>
+    <div class="member">
+      <img src="https://cdn.discordapp.com/avatars/1351116002380746865/ae1cf53e89644446e3fd83b0273bffc7?size=1024" alt="Hero.X">
+      <div class="member-name">Hero.X</div>
+      <div class="member-role">Head Mod</div>
+    </div>
+    <div class="member">
+      <img src="https://cdn.discordapp.com/avatars/951941386431778855/b8b6de3584bb4a8b6dac2fcf21bb1e62?size=1024" alt="Fried_PC">
+      <div class="member-name">Fried_PC</div>
+      <div class="member-role">Mod</div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

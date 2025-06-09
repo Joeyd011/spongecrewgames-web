@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sponge Crew</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+  /* Reset and base */
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #000010;
+    font-family: 'Fredoka One', cursive;
+    color: #0af;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Background container */
+  #background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -2; /* behind text and main background shapes */
+    background: #000010;
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    gap: 3px;
+    filter: drop-shadow(0 0 5px #0af);
+  }
+
+  /* Big rotated outline square */
+  #background::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    border: 3px solid #0099ff88; /* semi-transparent bright blue */
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: -1; /* behind blocks and pixels but above background */
+    pointer-events: none;
+    box-shadow: 0 0 20px #0099ff88;
+  }
+
+  .block {
+    width: 100%;
+    height: 100%;
+    background: #003366;
+    animation: pulse 1.5s infinite alternate ease-in-out;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #0077ff;
+  }
+
+  .pixel {
+    width: 8px;
+    height: 8px;
+    background: #0099ff;
+    border-radius: 50%;
+    animation: floatScale 3s infinite ease-in-out alternate;
+    justify-self: center;
+    align-self: center;
+    box-shadow: 0 0 8px #33bbff;
+  }
+
+  /* Animate blocks */
+  @keyframes pulse {
+    0% { background-color: #003366; box-shadow: 0 0 6px #0077ff; }
+    100% { background-color: #0055aa; box-shadow: 0 0 14px #33bbff; }
+  }
+
+  @keyframes floatScale {
+    0% { transform: translateY(0) scale(1); opacity: 0.7; }
+    50% { transform: translateY(-12px) scale(1.2); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 0.7; }
+  }
+
+  /* Layout for text */
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 24px;
+    color: #0af;
+    font-size: 1.8rem;
+    user-select: none;
+  }
+
+  #left-top {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #left-top .games {
+    font-size: 1.3rem;
+    color: #3399ff;
+    align-self: flex-end;
+  }
+
+  #top-middle {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.7rem;
+    color: #66bbff;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 700;
+    text-shadow: 0 0 8px #33aaff;
+    transition: color 0.3s ease;
+  }
+
+  #top-middle:hover {
+    color: #99ddff;
+    text-shadow: 0 0 15px #66ccff;
+  }
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  main h1 {
+    font-size: 2.5rem;
+    color: #00aaff;
+    text-shadow:
+      2px 2px 0 #001122,
+      4px 4px 4px #000;
+    max-width: 600px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Background container for moving pixels and blocks -->
+<div id="background"></div>
+
+<header>
+  <div id="left-top">
+    <div>Sponge Crew</div>
+    <div class="games">Games</div>
+  </div>
+  <div id="top-middle" onclick="location.href='team.html'">The Team</div>
+</header>
+
+<main>
+  <h1>Spongebob wants to come the july of 20th??</h1>
+</main>
+
+<script>
+  // Generate blocks and pixels in background
+  const bg = document.getElementById('background');
+  const cols = 30;
+  const rows = 20;
+
+  for (let i = 0; i < cols * rows; i++) {
+    const isPixel = Math.random() < 0.15; // 15% chance to be pixel
+    let el;
+
+    if (isPixel) {
+      el = document.createElement('div');
+      el.classList.add('pixel');
+      el.style.setProperty('--i', i);
+    } else {
+      el = document.createElement('div');
+      el.classList.add('block');
+      el.style.setProperty('--i', i);
+      // randomize animation delay so they pulse out of sync
+      el.style.animationDelay = (Math.random() * 1.5).toFixed(2) + 's';
+    }
+    bg.appendChild(el);
+  }
+</script>
+
+</body>
+</html>
