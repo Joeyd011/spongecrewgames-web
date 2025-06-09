@@ -7,25 +7,26 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-  /* Reset and base */
   body, html {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background: #000010;
     font-family: 'Fredoka One', cursive;
     color: #0af;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
 
-  /* Background container */
+  body {
+    overflow-y: auto;
+  }
+
   #background {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
-    z-index: -2; /* behind text and main background shapes */
+    z-index: -2;
     background: #000010;
     display: grid;
     grid-template-columns: repeat(30, 1fr);
@@ -34,7 +35,6 @@
     filter: drop-shadow(0 0 5px #0af);
   }
 
-  /* Big rotated outline square */
   #background::before {
     content: "";
     position: fixed;
@@ -42,9 +42,9 @@
     left: 50%;
     width: 400px;
     height: 400px;
-    border: 3px solid #0099ff88; /* semi-transparent bright blue */
+    border: 3px solid #0099ff88;
     transform: translate(-50%, -50%) rotate(45deg);
-    z-index: -1; /* behind blocks and pixels but above background */
+    z-index: -1;
     pointer-events: none;
     box-shadow: 0 0 20px #0099ff88;
   }
@@ -69,7 +69,6 @@
     box-shadow: 0 0 8px #33bbff;
   }
 
-  /* Animate blocks */
   @keyframes pulse {
     0% { background-color: #003366; box-shadow: 0 0 6px #0077ff; }
     100% { background-color: #0055aa; box-shadow: 0 0 14px #33bbff; }
@@ -81,7 +80,6 @@
     100% { transform: translateY(0) scale(1); opacity: 0.7; }
   }
 
-  /* Layout for text */
   header {
     display: flex;
     justify-content: space-between;
@@ -128,7 +126,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
+    padding: 40px 20px 100px;
   }
 
   main h1 {
@@ -139,11 +137,36 @@
       4px 4px 4px #000;
     max-width: 600px;
   }
+
+  /* Investor Box */
+  .investor-box {
+    background: #001530dd;
+    border: 2px solid #0077ff;
+    margin: 40px auto 60px;
+    max-width: 500px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 0 12px #0099ff;
+    color: #ccf;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .investor-box h2 {
+    color: #33bbff;
+    margin-bottom: 12px;
+    font-size: 2rem;
+  }
+
+  .investor-box p {
+    margin: 8px 0;
+    line-height: 1.4;
+  }
+
 </style>
 </head>
 <body>
 
-<!-- Background container for moving pixels and blocks -->
 <div id="background"></div>
 
 <header>
@@ -158,14 +181,23 @@
   <h1>Spongebob wants to come the july of 20th??</h1>
 </main>
 
+<!-- Investor box at bottom -->
+<div class="investor-box">
+  <h2>Become a Que Investor</h2>
+  <p><strong>How?</strong> DM <em>@mrjoey_d</em> on Discord</p>
+  <p><strong>What will I be investing in?</strong><br>
+     You’ll be investing so this game can move on with more steps.</p>
+  <p><strong>What in return?</strong><br>
+     You’ll get a % share and access to the game a couple days before release.</p>
+</div>
+
 <script>
-  // Generate blocks and pixels in background
   const bg = document.getElementById('background');
   const cols = 30;
   const rows = 20;
 
   for (let i = 0; i < cols * rows; i++) {
-    const isPixel = Math.random() < 0.15; // 15% chance to be pixel
+    const isPixel = Math.random() < 0.15;
     let el;
 
     if (isPixel) {
@@ -176,7 +208,6 @@
       el = document.createElement('div');
       el.classList.add('block');
       el.style.setProperty('--i', i);
-      // randomize animation delay so they pulse out of sync
       el.style.animationDelay = (Math.random() * 1.5).toFixed(2) + 's';
     }
     bg.appendChild(el);
