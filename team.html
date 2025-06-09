@@ -57,6 +57,17 @@
       text-shadow: 0 0 15px #66ccff;
     }
 
+    .login-button {
+      position: fixed;
+      top: 16px;
+      right: 24px;
+      font-size: 1.3rem;
+      color: #66bbff;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+    }
+
     .pyramid {
       display: flex;
       flex-direction: column;
@@ -98,6 +109,38 @@
       font-size: 0.9rem;
       color: #99ccff;
     }
+
+    /* Popup */
+    #loginPopup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #001133;
+      border: 2px solid #00aaff;
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 999;
+      box-shadow: 0 0 15px #00ccff;
+    }
+
+    #loginPopup input {
+      background: #000;
+      color: #0af;
+      border: 1px solid #0077ff;
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    #loginPopup button {
+      padding: 8px 12px;
+      background: #00aaff;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -107,7 +150,8 @@
     <div class="site-title">Sponge Crew</div>
     <div class="team-label">//Team</div>
   </div>
-  <div id="top-middle" onclick="location.href='index.html'">Go To Home</div>
+  <div id="top-middle" onclick="location.href='index.html'">Home</div>
+  <div class="login-button" onclick="document.getElementById('loginPopup').style.display='block'">Login</div>
 </header>
 
 <main class="pyramid">
@@ -158,6 +202,33 @@
     </div>
   </div>
 </main>
+
+<div id="loginPopup">
+  <form onsubmit="return login(event)">
+    <label for="devPassword">Developer Password</label><br />
+    <input type="password" id="devPassword" required /><br />
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<script>
+  function login(e) {
+    e.preventDefault();
+    const pwd = document.getElementById('devPassword').value;
+    const hidden = atob('REVWQUNDT1VOVDEwMUtFWVRPQVBPUA==');
+    if (pwd === hidden) {
+      sessionStorage.setItem('dev-auth', 'true');
+      window.location.href = 'dev-panel.html';
+    } else {
+      alert('Wrong password!');
+    }
+  }
+
+  // Security check for dev-panel.html
+  if (window.location.pathname.includes('dev-panel.html') && sessionStorage.getItem('dev-auth') !== 'true') {
+    window.location.href = 'index.html';
+  }
+</script>
 
 </body>
 </html>
